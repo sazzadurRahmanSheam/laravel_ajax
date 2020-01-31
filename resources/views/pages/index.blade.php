@@ -105,6 +105,9 @@
 							$('#studentsList-tab').trigger('click');
 							$("#studentRecordEntry").trigger("reset");
 							$("#add-tab").html("Add Record");
+							$("#butsave").html("Submit");
+							$("#ID").val("");
+							$("#work_function").val("insert");
 
 							getData();		
 						}
@@ -153,7 +156,8 @@
 	function deletess(id){
 		var deleteId = id;
 
-		$.ajax({
+		if (confirm("Are You Sure? You Want To Delete?")) {
+			$.ajax({
 		 	url: '/laravel_ajax/student/delete/'+deleteId,
 		
 		 	cache: false,
@@ -163,6 +167,10 @@
 		 		getData();
 		 	}
 		 });
+		}
+		else{
+			alert("Data safe");
+		}
 	}
 
 	function edit(id){
